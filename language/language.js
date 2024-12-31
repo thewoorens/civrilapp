@@ -6,14 +6,14 @@ const language = {
     "tr": {
         changeLanguage: "Dil değiştirin",
         settings: "Ayarlar",
-        profile: "Profil",
         home: "Anasayfa",
+        news: "Haberler",
     },
     "en": {
         changeLanguage: "Change language",
         settings: "Settings",
         profile: "Profile",
-        home: "Home",
+        news: "News",
     },
     "de": {
         changeLanguage: "ändere Sprache",
