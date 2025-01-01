@@ -26,7 +26,7 @@ Bu proje, Çivril Belediyesi'nin mobil uygulamasını geliştirmek amacıyla Rea
 ### 2. Projeyi Klonlayın
 ```bash
 git clone https://github.com/thewoorenss/civrilapp.git
-cd CivrilApp
+cd civrilapp
 ```
 
 
