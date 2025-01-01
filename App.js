@@ -1,21 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-    View,
     Text,
     TouchableOpacity,
     StyleSheet,
     SafeAreaView,
     StatusBar,
-    Platform
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { useNavigation } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { useTranslation } from "react-i18next";
 
-// Language Configuration
-import {l} from './language/language'
 
 // Screens Import
 import HomeScreen from './screens/HomeScreen';
@@ -24,12 +21,14 @@ import SettingsScreen from './screens/SettingsScreen';
 
 const Tab = createBottomTabNavigator();
 
-function CustomTabBar({state, descriptors, navigation}) {
+function CustomTabBar({ state, descriptors, navigation }) {
+    const { t } = useTranslation(); // Çeviri fonksiyonu
+
     return (
         <SafeAreaView style={styles.tabBar}>
-            <StatusBar/>
+            <StatusBar />
             {state.routes.map((route, index) => {
-                const {options} = descriptors[route.key];
+                const { options } = descriptors[route.key];
                 const isFocused = state.index === index;
 
                 return (
@@ -39,12 +38,12 @@ function CustomTabBar({state, descriptors, navigation}) {
                         style={styles.tabItem}
                     >
                         <Ionicons size={24}
-                                  name={route.name === "Home" ? "home" : route.name === "News" ? "newspaper" : route.name === "Settings" ? "settings" : "question-mark-sharp"}
-                                  style={{color: isFocused ? 'green' : 'gray', paddingTop: 10,}}/>
-                        <Text style={{color: isFocused ? 'green' : 'gray'}}>
-                            {route.name === "Home" && l('home')}
-                            {route.name === "News" && l('news')}
-                            {route.name === "Settings" && l('settings')}
+                            name={route.name === "Home" ? "home" : route.name === "News" ? "newspaper" : route.name === "Settings" ? "settings" : "question-mark-sharp"}
+                            style={{ color: isFocused ? 'green' : 'gray', paddingTop: 10, }} />
+                        <Text style={{ color: isFocused ? 'green' : 'gray' }}>
+                            {route.name === "Home" && t('home')}
+                            {route.name === "News" && t('news')}
+                            {route.name === "Settings" && t('settings')}
                         </Text>
                     </TouchableOpacity>
                 );
@@ -54,33 +53,37 @@ function CustomTabBar({state, descriptors, navigation}) {
 }
 
 function TopBar() {
+    const { t } = useTranslation(); // Çeviri fonksiyonu
     const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.topBar}>
-            <Text style={styles.welcomeText}>Hoşgeldiniz, Eren</Text>
+            <Text style={styles.welcomeText}>{t('welcome')}, Semih Dere</Text>
             <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
-                <Ionicons name="settings" size={24} style={styles.settingsIcon}/>
+                <Ionicons name="settings" size={24} style={styles.settingsIcon} />
             </TouchableOpacity>
         </SafeAreaView>
     );
 }
 
 export default function App() {
+    const { t } = useTranslation(); // Çeviri fonksiyonu
+
     return (
         <SafeAreaProvider>
             <NavigationContainer>
-                <StatusBar/>
-                <TopBar/>
-                <Tab.Navigator screenOptions={{headerShown: false, headerBackButtonDisplayMode: false}} id={0}
-                               tabBar={(props) => <CustomTabBar {...props} />}>
-                    <Tab.Screen name="Home" component={HomeScreen}/>
-                    <Tab.Screen name="News" component={NewsScreen}/>
-                    <Tab.Screen name="Settings" component={SettingsScreen}/>
+                <StatusBar />
+                <TopBar />
+                <Tab.Navigator screenOptions={{ headerShown: false, headerBackButtonDisplayMode: false }} id={0}
+                    tabBar={(props) => <CustomTabBar {...props} />}>
+                    <Tab.Screen name="Home" component={HomeScreen} />
+                    <Tab.Screen name="News" component={NewsScreen} />
+                    <Tab.Screen name="Settings" component={SettingsScreen} />
                 </Tab.Navigator>
             </NavigationContainer>
         </SafeAreaProvider>
     );
 }
+
 
 const styles = StyleSheet.create({
     tabBar: {
