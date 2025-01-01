@@ -14,8 +14,8 @@ const HomeScreen = () => {
     return (
         <SafeAreaView style={{flex: 1}}>
             <View style={{flexDirection: 'row', alignItems: 'center', margin: 10}}>
-                <Text style={{fontSize: 20}}>Hava Durumu:</Text>
-                <Text style={{fontSize: 24, fontWeight: 'bold'}}> 37C</Text>
+                <Text style={{fontSize: 20}}>Hava Durumu: </Text>
+                <Text style={{fontSize: 24, fontWeight: 'bold'}}>20&deg;C</Text>
                 <Ionicons name={weatherIcon} size={40} style={{
                     marginLeft: 10,
                     color: weather === "Güneşli" ? 'orange' : weather === "Yağmurlu" ? 'blue' : 'gray'

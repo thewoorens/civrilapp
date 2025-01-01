@@ -53,7 +53,6 @@ export default function App() {
 const styles = StyleSheet.create({
     tabBar: {
         position: "absolute",
-        bottom: 25,
         left: 20,
         right: 20,
         elevation: 0,
