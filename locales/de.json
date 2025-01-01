@@ -2,8 +2,10 @@
   "welcome": "Willkommen",
   "hello": "Hallo, wie geht es dir?",
   "changeLanguage": "Sprache ändern",
-  "missingLanguage": "Fehlende Sprache?",
+  "missingLanguage": "Fehlende oder falsche Sprachübersetzungen, bitte lassen Sie uns wissen. ",
   "home": "Zuhause",
-  "news": "Nachrichten & Ankündigungen",
-  "settings": "Einstellungen"
+  "news": "Nachrichten",
+  "settings": "Einstellungen",
+  "jobs": "Stellenangebote",
+  "contact": "Kontakt",
 }

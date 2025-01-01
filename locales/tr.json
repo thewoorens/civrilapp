@@ -2,8 +2,10 @@
   "welcome": "Hoşgeldiniz",
   "hello": "Merhaba, nasılsınız?",
   "changeLanguage": "Dil Değiştir",
-  "missingLanguage": "Eksik dil?",
+  "missingLanguage": "Eksik veya hatalı dil çevirileri lütfen bize bildirin. ",
   "home": "Ana Sayfa",
-  "news": "Haberler & Duyurular",
-  "settings": "Ayarlar"
+  "news": "Haberler",
+  "settings": "Ayarlar",
+  "jobs": "İş İlanları",
+  "contact": "İletişim"
 }

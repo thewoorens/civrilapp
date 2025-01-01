@@ -2,9 +2,11 @@
   "welcome": "Welcome",
   "hello": "Hello, how are you?",
   "changeLanguage": "Change Language",
-  "missingLanguage": "Missing language?",
+  "missingLanguage": "Missing or incorrect language translations, please let us know. ",
   "home": "Home",
-  "news": "News & Announcements",
-  "settings": "Settings"
+  "news": "News",
+  "settings": "Settings",
+  "jobs": "Job Listings",
+  "contact": "Contact "
 
 }

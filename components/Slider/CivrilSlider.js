@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {View, StyleSheet, Image} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import Swiper from 'react-native-swiper';
 
 const CivrilSlider = () => {
@@ -15,30 +15,28 @@ const CivrilSlider = () => {
     ];
 
     const cards = [
-        { title: 'Card 1', description: 'Description for card 1' },
-        { title: 'Card 2', description: 'Description for card 2' },
-        { title: 'Card 3', description: 'Description for card 3' }
+        {title: 'Card 1', description: 'Description for card 1'},
+        {title: 'Card 2', description: 'Description for card 2'},
+        {title: 'Card 3', description: 'Description for card 3'}
     ];
 
     return (
-        <SafeAreaView style={styles.container}>
-            <View style={styles.sliderContainer}>
-                <Swiper
-                    bouncesZoom={true}
-                    showsPagination={true}
-                    autoplay={true}
-                    autoplayTimeout={5}
-                    dotStyle={styles.dot}
-                    activeDotStyle={styles.activeDot}
-                >
-                    {images.map((image, index) => (
-                        <View key={index} style={styles.slide}>
-                            <Image source={{ uri: image }} style={styles.image} />
-                        </View>
-                    ))}
-                </Swiper>
-            </View>
-        </SafeAreaView>
+        <View style={styles.sliderContainer}>
+            <Swiper
+                bouncesZoom={true}
+                showsPagination={true}
+                autoplay={true}
+                autoplayTimeout={5}
+                dotStyle={styles.dot}
+                activeDotStyle={styles.activeDot}
+            >
+                {images.map((image, index) => (
+                    <View key={index} style={styles.slide}>
+                        <Image source={{uri: image}} style={styles.image}/>
+                    </View>
+                ))}
+            </Swiper>
+        </View>
     );
 };
 

@@ -19,10 +19,10 @@ export default function SettingsScreen() {
     const handleLanguageChange = (value) => {
         const languageMap = {
             'Türkçe': 'tr',
-            'İngilizce': 'en',
-            'Almanca': 'de'
+            'English': 'en',
+            'Deutsch': 'de'
         };
-        return languageMap[value] || "en";
+        return languageMap[value] || "tr";
 
     };
 
@@ -34,7 +34,7 @@ export default function SettingsScreen() {
                 {t('settings')}
             </Text>
             <CivrilSelect
-                options={['Türkçe', 'İngilizce', 'Almanca']}
+                options={['Türkçe', 'English', 'Deutsch']}
                 onSelect={handleLanguageChange}
             />
         </SafeAreaView>

@@ -1,35 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Modal, FlatList, StyleSheet, Image } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { getData } from "../../backend/storage"; // Eğer başka bir kaynak kullanıyorsanız buna göre düzenleyin
-import i18n from "../../i18n"; // i18n'i içe aktar
+import i18n from "../../i18n";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useTranslation } from "react-i18next";
 
 export default function CivrilSelect({ options, onSelect, selectedValue }) {
     const [modalVisible, setModalVisible] = useState(false);
     const [currentLanguage, setCurrentLanguage] = useState(selectedValue || 'en'); // Varsayılan dil
-    const { t } = useTranslation(); // Çeviri fonksiyonu
-    // Dil değişimini ve AsyncStorage'de kaydetmeyi sağlayan fonksiyon
+    const { t } = useTranslation();
     const handleSelect = async (item) => {
         if (item === "Türkçe") {
             item = "tr";
-        } else if (item === "İngilizce") {
+        } else if (item === "English") {
             item = "en";
-        } else if (item === "Almanca") {
+        } else if (item === "Deutsch") {
             item = "de";
         }
         try {
-            // Seçilen dili AsyncStorage'e kaydediyoruz
             await AsyncStorage.setItem("language", item);
 
-            // i18n dilini değiştiriyoruz
             i18n.changeLanguage(item);
 
-            // Dil değiştiğinde mevcut dil durumunu güncelle
             setCurrentLanguage(item);
 
-            // Seçilen dili dışarıya bildir
             onSelect(item);
             setModalVisible(false);
         } catch (error) {
@@ -37,21 +31,20 @@ export default function CivrilSelect({ options, onSelect, selectedValue }) {
         }
     };
 
-    // Uygulama başlatıldığında AsyncStorage'den dil bilgisini al
     useEffect(() => {
         const getStoredLanguage = async () => {
             try {
                 const storedLang = await AsyncStorage.getItem("language");
                 if (storedLang) {
                     setCurrentLanguage(storedLang);
-                    i18n.changeLanguage(storedLang); // Uygulama başlatıldığında dil değiştirme
+                    i18n.changeLanguage(storedLang);
                 }
             } catch (error) {
                 console.log("Dil bilgisi yüklenirken bir hata oluştu:", error);
             }
         };
 
-        getStoredLanguage(); // Dil bilgisini al
+        getStoredLanguage();
     }, []);
 
     return (
@@ -61,7 +54,7 @@ export default function CivrilSelect({ options, onSelect, selectedValue }) {
             </TouchableOpacity>
             <Modal
                 transparent={true}
-                animationType="slide"
+                animationType="fade"
                 visible={modalVisible}
                 onRequestClose={() => setModalVisible(false)}
             >
@@ -75,16 +68,19 @@ export default function CivrilSelect({ options, onSelect, selectedValue }) {
                             name={"close"}
                             size={25}
                             onPress={() => setModalVisible(false)}
-                            style={{ alignSelf: "flex-end" }}
+                            style={{ alignSelf: "flex-end", marginBottom: 10 }}
                         />
                         <FlatList
                             data={options}
                             keyExtractor={(item) => item}
                             renderItem={({ item }) => (
                                 <TouchableOpacity
-                                    activeOpacity={1}
                                     style={{
-                                        backgroundColor: currentLanguage === item ? "gray" : "transparent",
+                                        borderRadius: 10,
+                                        borderWidth: 1,
+                                        borderColor: "#cccaca",
+                                        marginVertical: 5,
+                                        backgroundColor: currentLanguage === item ? "#cccaca" : "transparent",
                                         padding: 25,
                                         flexDirection: "row",
                                         alignItems: "center",
@@ -96,13 +92,13 @@ export default function CivrilSelect({ options, onSelect, selectedValue }) {
                                             uri:
                                                 item === "Türkçe"
                                                     ? "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Flag_of_Turkey.svg/1200px-Flag_of_Turkey.svg.png"
-                                                    : item === "Almanca"
-                                                        ? "data:image/png;base64,..."
-                                                        : item === "İngilizce"
-                                                            ? "data:image/png;base64,..."
+                                                    : item === "Deutsch"
+                                                        ? "https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/255px-Flag_of_Germany.svg.png"
+                                                        : item === "English"
+                                                            ? "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Flag_of_the_United_States_%28Pantone%29.svg/255px-Flag_of_the_United_States_%28Pantone%29.svg.png"
                                                             : null,
                                         }}
-                                        style={{ width: 50, height: 30 }}
+                                        style={{ width: 50, height: 30, borderRadius: 5 }}
                                     />
                                     <Text style={styles.optionText}>{item}</Text>
                                 </TouchableOpacity>
@@ -134,6 +130,8 @@ const styles = StyleSheet.create({
     },
     modalContainer: {
         flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+
         justifyContent: 'center',
         alignItems: 'center',
     },
