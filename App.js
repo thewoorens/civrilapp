@@ -7,7 +7,6 @@ import {
     StatusBar, View,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from "react-native-vector-icons/Ionicons";

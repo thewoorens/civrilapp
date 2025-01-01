@@ -15,7 +15,7 @@ const CustomTabBarButton = ({children, onPress}) => (
     <TouchableOpacity
         activeOpacity={1}
         style={{
-            top: -7,
+            top: -10,
             justifyContent: 'center',
             alignItems: 'center',
         }}
@@ -40,9 +40,8 @@ const Tabs = () => {
                     left: 20,
                     right: 20,
                     elevation: 0,
-                    marginHorizontal: 10,
                     backgroundColor: '#FFFFFF',
-                    borderRadius: 15,
+                    borderRadius: 25,
                     height: 90,
                 }
             }}

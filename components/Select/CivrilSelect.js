@@ -70,6 +70,7 @@ export default function CivrilSelect({ options, onSelect, selectedValue }) {
                             onPress={() => setModalVisible(false)}
                             style={{ alignSelf: "flex-end", marginBottom: 10 }}
                         />
+                        <Text style={{fontSize: 20, fontWeight: "bold", marginVertical: 10}}>{t("languageSelection")}</Text>
                         <FlatList
                             data={options}
                             keyExtractor={(item) => item}

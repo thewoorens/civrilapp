@@ -12,8 +12,8 @@ const HomeScreen = () => {
     const weather = "Güneşli"; // Example weather variable, replace with actual data
     const weatherIcon = weather === "Güneşli" ? "sunny" : "Yağmurlu" ? "rainy-outline" : "cloudy";
     return (
-        <SafeAreaView>
-            <View style={{flexDirection: 'row', alignItems: 'center', margin: 10, marginTop: 20}}>
+        <SafeAreaView style={{flex: 1}}>
+            <View style={{flexDirection: 'row', alignItems: 'center', margin: 10}}>
                 <Text style={{fontSize: 20}}>Hava Durumu:</Text>
                 <Text style={{fontSize: 24, fontWeight: 'bold'}}> 37C</Text>
                 <Ionicons name={weatherIcon} size={40} style={{
@@ -23,7 +23,7 @@ const HomeScreen = () => {
                 <Text style={{fontSize: 24, fontWeight: 'bold'}}> {weather}</Text>
             </View>
             <CivrilSlider/>
-            <ScrollView>
+            <ScrollView contentContainerStyle={{flexGrow: 1}} scrollEnabled={true}>
                 <View style={styles.cardsContainer}>
                     <TouchableOpacity activeOpacity={5} style={styles.card}>
                         <Text style={styles.cardIcon}><MaterialCommunityIcons name={"pill"} size={34}/></Text>
@@ -63,9 +63,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     cardsContainer: {
+        marginHorizontal: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: 10,
     },
     card: {
         backgroundColor: '#f8f8f8',
@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
         padding: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: 10,
         borderRadius: 10,
         shadowColor: '#000',
         shadowOffset: {width: 0, height: 2},

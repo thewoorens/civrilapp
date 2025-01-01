@@ -2,10 +2,11 @@
   "welcome": "Hoşgeldiniz",
   "hello": "Merhaba, nasılsınız?",
   "changeLanguage": "Dil Değiştir",
-  "missingLanguage": "Eksik veya hatalı dil çevirileri lütfen bize bildirin. ",
+  "missingLanguage": "Eksik veya hatalı dil çevirilerini lütfen bize bildirin. ",
   "home": "Ana Sayfa",
   "news": "Haberler",
   "settings": "Ayarlar",
   "jobs": "İş İlanları",
-  "contact": "İletişim"
+  "contact": "İletişim",
+  "languageSelection": "Lütfen Dil Seçin"
 }

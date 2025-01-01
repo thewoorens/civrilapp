@@ -1,7 +1,10 @@
 import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import { View, StyleSheet, Image, Dimensions } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Swiper from 'react-native-swiper';
+
+// Get the screen height and width
+const { width, height } = Dimensions.get('window');
 
 const CivrilSlider = () => {
     const images = [
@@ -12,12 +15,6 @@ const CivrilSlider = () => {
         'https://www2.denizli.bel.tr/userfiles/image/r181127112911089.jpg',
         'https://www.boyacioglu.com.tr/wp-content/uploads/2022/06/Isikli-Golu-civril-Golu-0.jpg',
         'https://i0.wp.com/turkeyoutdoor.org/wp-content/uploads/2023/11/Civril-2.jpg?w=900&ssl=1',
-    ];
-
-    const cards = [
-        {title: 'Card 1', description: 'Description for card 1'},
-        {title: 'Card 2', description: 'Description for card 2'},
-        {title: 'Card 3', description: 'Description for card 3'}
     ];
 
     return (
@@ -32,7 +29,7 @@ const CivrilSlider = () => {
             >
                 {images.map((image, index) => (
                     <View key={index} style={styles.slide}>
-                        <Image source={{uri: image}} style={styles.image}/>
+                        <Image source={{ uri: image }} style={styles.image} />
                     </View>
                 ))}
             </Swiper>
@@ -42,7 +39,8 @@ const CivrilSlider = () => {
 
 const styles = StyleSheet.create({
     sliderContainer: {
-        height: 260,
+        // Adjusting the height based on the screen size
+        height: height > 700 ? 300 : 200,  // Larger height for larger screens
     },
     slide: {
         padding: 15,
@@ -51,6 +49,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     image: {
+        // Adjusting image styling for responsiveness
         width: '100%',
         height: '100%',
         resizeMode: 'cover',
@@ -70,7 +69,6 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         marginHorizontal: 3,
     },
-
 });
 
 export default CivrilSlider;
