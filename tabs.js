@@ -2,10 +2,9 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from './screens/HomeScreen';
 import NewsScreen from './screens/NewsScreen';
 import SettingsScreen from './screens/SettingsScreen';
-import {Image, Text, TouchableOpacity, View} from "react-native";
+import {Image, TouchableOpacity, View} from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ContactScreen from "./screens/ContactScreen";
-import JobsScreen from "./screens/JobsScreen";
 import {useTranslation} from "react-i18next";
 import FastScreen from "./screens/FastScreen";
 
@@ -46,7 +45,7 @@ const Tabs = () => {
                     height: 90,
                 }
             }}
-        >
+         id={0}>
             <Tab.Screen
                 name="Home"
                 component={HomeScreen}

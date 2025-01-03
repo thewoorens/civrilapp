@@ -1,26 +1,35 @@
 import React, {useState} from 'react';
-
 import {
     Text,
     TouchableOpacity,
     StyleSheet,
     SafeAreaView,
-    StatusBar, View,
+    StatusBar,
+    View,
 } from 'react-native';
 
-
 import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {useTranslation} from "react-i18next";
+import 'react-native-gesture-handler';
 import NotificationModel from "./components/NotificationModel";
 import Tabs from "./tabs";
+import NewsDetailScreen from "./screens/NewsDetailScreen";
 
-
+const Stack = createStackNavigator();
 
 function TopBar() {
     const {t} = useTranslation(); // Translation function
     const [modalVisible, setModalVisible] = useState(false);
-    const notifications = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."];
+    const notifications = [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    ];
     const times = new Date().toLocaleTimeString();
     return (
         <SafeAreaView style={styles.topBar}>
@@ -39,13 +48,36 @@ function TopBar() {
     );
 }
 
+function HomeScreen() {
+    return (
+        <View style={styles.container}>
+            <Text>Home Screen</Text>
+        </View>
+    );
+}
+
+function DetailsScreen() {
+    return (
+        <View style={styles.container}>
+            <Text>Details Screen</Text>
+        </View>
+    );
+}
+
 export default function App() {
     const {t} = useTranslation();
 
     return (
         <NavigationContainer>
-            <TopBar />
-            <Tabs />
+            <Stack.Navigator
+                screenOptions={{
+                    header: () => <TopBar />, // Use TopBar as the header
+                }}
+            >
+                <Stack.Screen name="Tabs" component={Tabs} />
+                <Stack.Screen name="Details" component={DetailsScreen} />
+                <Stack.Screen name="NewsDetail" component={NewsDetailScreen} />
+            </Stack.Navigator>
         </NavigationContainer>
     );
 }
@@ -76,5 +108,10 @@ const styles = StyleSheet.create({
     settingsIcon: {
         marginRight: 15,
         color: 'black',
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
