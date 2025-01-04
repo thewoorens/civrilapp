@@ -11,7 +11,6 @@ import FastScreen from "./screens/FastScreen";
 const Tab = createBottomTabNavigator();
 
 const CustomTabBarButton = ({children, onPress}) => (
-    console.log("KERNEL-LOG => CUSTOM TAB BAR BUTTON RENDERED 🟩"),
     <TouchableOpacity
         activeOpacity={1}
         style={{

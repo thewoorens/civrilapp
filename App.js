@@ -20,7 +20,6 @@ import NewsDetailScreen from "./screens/NewsDetailScreen";
 const Stack = createStackNavigator();
 
 function TopBar() {
-    console.log("KERNEL-LOG => TOP BAR RENDERED");
     const {t} = useTranslation(); // Translation function
     const [modalVisible, setModalVisible] = useState(false);
     const notifications = [
@@ -35,7 +34,9 @@ function TopBar() {
     return (
         <SafeAreaView style={styles.topBar}>
             <StatusBar barStyle="light-content"/>
-            <Text style={styles.welcomeText}>{t('welcome')}, Semih Dere</Text>
+            <Text style={styles.welcomeText}><Text style={{
+                fontWeight: 'bold',
+            }}>{t('welcome')}</Text>, Semih Dere</Text>
             <TouchableOpacity onPress={() => setModalVisible(true)}>
                 <Ionicons name="notifications" size={24} style={styles.settingsIcon}/>
             </TouchableOpacity>
@@ -50,6 +51,7 @@ function TopBar() {
 }
 
 function NewsDetailTopBar({ navigation }) {
+    console.log("KERNEL-LOG => News Detail Top Bar Renderer Successful 🟩"); // Log NewsDetailTopBar render
     const { t } = useTranslation();
     return (
         <SafeAreaView style={styles.topBar}>
@@ -71,6 +73,8 @@ function DetailsScreen() {
 }
 
 export default function App() {
+
+    console.log("KERNEL-LOG => APP START SUCCESSFUL powered by kernelsoftware"); // Log application render
     const {t} = useTranslation();
 
     return (
