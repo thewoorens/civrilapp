@@ -59,7 +59,7 @@ export default function NewsDetailScreen({ route }) {
                         <Ionicons name={"share-outline"} color={"white"} size={22}></Ionicons>
                     </TouchableOpacity>
                 </View>
-                <Text style={[styles.content, { fontSize }]}>{news.content}</Text>
+                <Text selectable={true} selectionColor={"lightgreen"} style={[styles.content, { fontSize }]} textBreakStrategy="simple">{news.content}</Text>
             </ScrollView>
         </SafeAreaView>
     );

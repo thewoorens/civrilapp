@@ -20,6 +20,7 @@ import NewsDetailScreen from "./screens/NewsDetailScreen";
 const Stack = createStackNavigator();
 
 function TopBar() {
+    console.log("KERNEL-LOG => TOP BAR RENDERED");
     const {t} = useTranslation(); // Translation function
     const [modalVisible, setModalVisible] = useState(false);
     const notifications = [
@@ -48,11 +49,16 @@ function TopBar() {
     );
 }
 
-function HomeScreen() {
+function NewsDetailTopBar({ navigation }) {
+    const { t } = useTranslation();
     return (
-        <View style={styles.container}>
-            <Text>Home Screen</Text>
-        </View>
+        <SafeAreaView style={styles.topBar}>
+            <StatusBar barStyle="light-content" />
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+                <Ionicons name="arrow-back" size={34} style={styles.backIcon} />
+            </TouchableOpacity>
+            <Text style={styles.newsDetailTitle}>{t('newsDetail')}</Text>
+        </SafeAreaView>
     );
 }
 
@@ -76,7 +82,9 @@ export default function App() {
             >
                 <Stack.Screen name="Tabs" component={Tabs} />
                 <Stack.Screen name="Details" component={DetailsScreen} />
-                <Stack.Screen name="NewsDetail" component={NewsDetailScreen} />
+                <Stack.Screen name="NewsDetail" options={{
+                    header: (props) => <NewsDetailTopBar {...props} />
+                }} component={NewsDetailScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
@@ -109,9 +117,19 @@ const styles = StyleSheet.create({
         marginRight: 15,
         color: 'black',
     },
+    backIcon: {
+        marginLeft: 15,
+        color: 'black',
+    },
+    newsDetailTitle: {
+        fontSize: 18,
+        color: 'black',
+        paddingVertical: 15,
+        paddingHorizontal: 15,
+    },
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-    },
+    }
 });

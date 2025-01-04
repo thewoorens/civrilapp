@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 5,
-        marginBottom: 100,
+        marginBottom: 70,
         backgroundColor: 'transparent',
     },
     scrollStyle: {

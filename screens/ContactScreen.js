@@ -1,10 +1,20 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import {
+    StyleSheet,
+    TextInput, View
+} from 'react-native';
 
 export default function ContactScreen() {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Contact Screen</Text>
-        </View>
-    );
-}
+    <View>
+        <TextInput
+            label="Name"
+            style={styles.input}
+            mode="outlined"
+            placeholder="Enter your name"/>
+    </View>
+};
+
+const styles = StyleSheet.create({
+    input: {
+        marginBottom: 15,
+    },
+});

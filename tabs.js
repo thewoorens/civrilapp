@@ -11,6 +11,7 @@ import FastScreen from "./screens/FastScreen";
 const Tab = createBottomTabNavigator();
 
 const CustomTabBarButton = ({children, onPress}) => (
+    console.log("KERNEL-LOG => CUSTOM TAB BAR BUTTON RENDERED 🟩"),
     <TouchableOpacity
         activeOpacity={1}
         style={{
@@ -78,7 +79,7 @@ const Tabs = () => {
                 options={{
                     tabBarIcon: ({focused}) => (
                         <View>
-                            <Image source={require('./assets/icon.png')} style={{width: 90, height: 90}}
+                            <Image source={require('./assets/icon.png')} style={{width: 90, height: 80, marginBottom: -10}}
                                    resizeMode="contain"/>
                         </View>
                     ),
