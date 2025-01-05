@@ -1,65 +1,72 @@
-import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity, Share } from 'react-native';
-import newsData from './news.json';
+import React, {useEffect, useState} from 'react';
+import {View, Text, Image, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity, Share} from 'react-native';
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import {useRoute} from "@react-navigation/native";
+import {fetchNews} from "../backend/backend";
+import Loading from "../components/Loading";
 
-export default function NewsDetailScreen({ route }) {
-    const { newsId } = route.params;
-    const news = newsData.find(item => item.id === newsId);
-    const [fontSize, setFontSize] = useState(18);
+export default function NewsDetailScreen() {
+    const route = useRoute();  // Get the route parameter
+    const {newsId} = route.params;  // Extract newsId from route params
+    const [news, setNews] = useState(null);
+    const [fontSize, setFontSize] = useState(14);  // Default font size
 
+    useEffect(() => {
+        const getNewsDetail = async () => {
+            const allNews = await fetchNews();  // Fetch all news
+            const selectedNews = allNews.find(newsItem => newsItem.id === newsId);  // Find the selected news by ID
+            setNews(selectedNews);  // Set the selected news to state
+        };
 
-    if (!news) {
-        return (
-            <View style={styles.container}>
-                <Text>News not found</Text>
-            </View>
-        );
-    }
+        getNewsDetail();  // Fetch news when component mounts
+    }, [newsId]);
+
+    const increaseFontSize = () => {
+        setFontSize(prev => (prev < 30 ? prev + 2 : prev));  // Increase font size but cap at 30
+    };
+
+    const decreaseFontSize = () => {
+        setFontSize(prev => (prev > 8 ? prev - 2 : prev));  // Decrease font size but ensure it's at least 8
+    };
 
     const onShare = async () => {
         try {
             await Share.share({
-                message: `${news.title}\n\n${news.content}`,
+                message: `Check out this news: ${news?.title}\n\n${news?.content}`,
             });
         } catch (error) {
-            alert(error.message);
+            console.error('Error sharing:', error.message);
         }
     };
 
-    const increaseFontSize = () => {
-        if (fontSize < 30) {
-            setFontSize(fontSize + 2);
-        }
-    };
+    if (!news) {
+        return <Loading />  // Loading state if news data is not available yet
+    }
 
-    const decreaseFontSize = () => {
-        if (fontSize > 10) {
-            setFontSize(fontSize - 2);
-        }
-    };
 
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView contentContainerStyle={styles.scrollContainer}>
-                <Image source={{ uri: news.image }} style={styles.image} />
+                <Image source={{uri: news.image}} style={styles.image}/>
                 <Text style={styles.title}>{news.title}</Text>
-                <Text style={styles.date}>Haber Yayınlanma Saati: {news.date}</Text>
-                <Text style={styles.location}>Konum: {news.location}</Text>
+                <Text style={styles.date}>Yayınlanma Saati: {news.timestamp}</Text>
                 <Text style={styles.category}>Kategori: {news.category}</Text>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity activeOpacity={1} style={styles.actionButton} onPress={increaseFontSize}>
-                        <MaterialIcons color={"white"} name={"zoom-in"} size={22}></MaterialIcons>
+                        <MaterialIcons color={"white"} name={"zoom-in"} size={22}/>
                     </TouchableOpacity>
                     <TouchableOpacity activeOpacity={1} style={styles.actionButton} onPress={decreaseFontSize}>
-                        <MaterialIcons color={"white"} name={"zoom-out"} size={22}></MaterialIcons>
+                        <MaterialIcons color={"white"} name={"zoom-out"} size={22}/>
                     </TouchableOpacity>
                     <TouchableOpacity activeOpacity={1} style={styles.actionButton} onPress={onShare}>
-                        <Ionicons name={"share-outline"} color={"white"} size={22}></Ionicons>
+                        <Ionicons name={"share-outline"} color={"white"} size={22}/>
                     </TouchableOpacity>
                 </View>
-                <Text selectable={true} selectionColor={"lightgreen"} style={[styles.content, { fontSize }]} textBreakStrategy="simple">{news.content}</Text>
+                <Text selectable={true} selectionColor={"lightgreen"} style={[styles.content, {fontSize}]}
+                      textBreakStrategy="simple">
+                    {news.content}
+                </Text>
             </ScrollView>
         </SafeAreaView>
     );

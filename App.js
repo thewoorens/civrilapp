@@ -51,7 +51,6 @@ function TopBar() {
 }
 
 function NewsDetailTopBar({ navigation }) {
-    console.log("KERNEL-LOG => News Detail Top Bar Renderer Successful 🟩"); // Log NewsDetailTopBar render
     const { t } = useTranslation();
     return (
         <SafeAreaView style={styles.topBar}>

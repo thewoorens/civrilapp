@@ -5,51 +5,70 @@ import {
     StyleSheet,
     Image,
     TouchableOpacity,
-    Dimensions, SafeAreaView,
+    Dimensions,
+    SafeAreaView,
 } from "react-native";
 import Swiper from "react-native-swiper";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
-const AppIntro = ({ navigation }) => {
+const AppIntro = ({navigation}) => {
+    const handleSkip = () => {
+        // Kullanıcıyı son slayta yönlendirir
+        navigation.navigate("SignUp");
+    };
+
     return (
         <SafeAreaView style={styles.container}>
+            {/* Atla Butonu */}
+            <TouchableOpacity activeOpacity={1} style={styles.skipButton} onPress={handleSkip}>
+                <Text style={styles.skipButtonText}>
+                    Atla
+                </Text>
+                <Ionicons name="arrow-forward" size={28} />
+
+            </TouchableOpacity>
+
             <Swiper
                 loop={false}
-                dot={<View style={styles.dot} />}
-                activeDot={<View style={styles.activeDot} />}
+                dot={<View style={styles.dot}/>}
+                activeDot={<View style={styles.activeDot}/>}
                 paginationStyle={styles.pagination}
             >
+                {/* İlk Slayt */}
                 <View style={styles.slide}>
                     <Image
-                        source={{ uri: "https://placehold.co/600x400.png" }}
+                        source={require("../assets/favicon.png")}
                         style={styles.image}
                     />
-                    <Text style={styles.title}>Hoş Geldiniz</Text>
+                    <Text style={styles.title}>Hoş Geldiniz!</Text>
                     <Text style={styles.description}>
-                        Çivril Belediyesi uygulamasıyla şehrinize daha yakın olun. Tüm
-                        hizmetler bir tık uzağınızda!
+                        Çivril Belediyesi uygulamasıyla ilçemize bir adım daha yakın olun! 💚{"\n"}Tüm hizmetler size
+                        özel, tek bir tıkla elinizin altında! 🌟
                     </Text>
                 </View>
 
+                {/* İkinci Slayt */}
                 <View style={styles.slide}>
                     <Image
-                        source={{ uri: "https://placehold.co/600x400.png" }}
+                        source={require("../assets/slider2.png")}
                         style={styles.image}
                     />
-                    <Text style={styles.title}>Hizmetler ve Duyurular</Text>
+                    <Text style={styles.title}>Harika Özellikler!</Text>
                     <Text style={styles.description}>
-                        Belediyeden güncel haberler, duyurular ve hizmetlere kolayca erişin.
+                        Online Perşembe Pazarı, Çivril Rehberi, İstek ve Şikayet gibi özelliklerle ilçemizi keşfetmeye
+                        başlayın. 🌟Üstelik dil seçenekleriyle herkes için erişilebilir!
                     </Text>
                 </View>
 
+                {/* Üçüncü Slayt */}
                 <View style={styles.slide}>
                     <Image
-                        source={{ uri: "https://placehold.co/600x400.png" }}
+                        source={require("../assets/slider3.png")}
                         style={styles.image}
                     />
-                    <Text style={styles.title}>Hemen Başlayın</Text>
+                    <Text style={styles.title}>Hemen Katılın!</Text>
                     <Text style={styles.description}>
-                        Şehriniz için daha fazla bilgiye ulaşmak için hemen giriş yapın ya
-                        da kayıt olun.
+                        İlçemizle ilgili daha fazla bilgiye ulaşmak için üye olun ya da giriş yapın. 😊
                     </Text>
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity
@@ -73,14 +92,38 @@ const AppIntro = ({ navigation }) => {
     );
 };
 
-const { width, height } = Dimensions.get("window");
+const {width, height} = Dimensions.get("window");
 
 const styles = StyleSheet.create({
+
     container: {
-        marginTop: -250,
         flex: 1,
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#F9F9F9",
     },
+    skipButton: {
+        position: "absolute",
+        top: 40,
+        right: 20,
+        zIndex: 1,
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        shadowColor: "#000",
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+    },
+    skipButtonText: {
+        fontWeight: "bold",
+        fontSize: 14,
+        flexDirection: "row",
+        marginTop: -15,
+        alignItems: "center",
+    },
+    skipIcon: {
+        marginLeft: 5,
+        color: "#2E7D32",
+    },
+
     slide: {
         flex: 1,
         justifyContent: "center",
@@ -88,15 +131,15 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
     },
     image: {
-        width: width * 0.8,
+        width: width * 0.75,
         height: height * 0.4,
         resizeMode: "contain",
         marginBottom: 20,
     },
     title: {
-        fontSize: 26,
-        fontWeight: "600",
-        color: "#333333",
+        fontSize: 28,
+        fontWeight: "700",
+        color: "#2E7D32",
         textAlign: "center",
         marginBottom: 10,
     },
@@ -104,44 +147,52 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: "#555555",
         textAlign: "center",
-        lineHeight: 22,
+        lineHeight: 24,
+        paddingHorizontal: 10,
+        marginBottom: 40,
     },
     dot: {
-        backgroundColor: "#C5CCD6",
+        backgroundColor: "#B2DFDB",
         width: 8,
         height: 8,
         borderRadius: 4,
-        marginHorizontal: 5,
+        marginHorizontal: 6,
     },
     activeDot: {
-        backgroundColor: "green",
-        width: 9,
-        height: 9,
-        borderRadius: 6,
-        marginHorizontal: 5,
+        backgroundColor: "#2E7D32",
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+        marginHorizontal: 6,
     },
     pagination: {
-        //TODO: Noktaların altta değil de biraz yukarıda olmasını sağlar Yayına alınırken burası "bottom: 20" olacak
-        bottom: 180,
+        bottom: height * 0.1, // Responsive pagination konumu
     },
     buttonContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
+        width: "100%",
+        marginTop: 20,
         paddingHorizontal: 20,
-        marginTop: 30,
     },
     button: {
+        marginBottom: 80,
+        marginTop: -40,
         flex: 1,
-        backgroundColor: "green",
+        backgroundColor: "#2E7D32",
         paddingVertical: 15,
-        borderRadius: 10,
+        borderRadius: 8,
         alignItems: "center",
         marginHorizontal: 5,
+        shadowColor: "#000",
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
     },
     secondaryButton: {
         backgroundColor: "#FFFFFF",
         borderWidth: 1,
-        borderColor: "green",
+        borderColor: "#2E7D32",
     },
     buttonText: {
         color: "#FFFFFF",
@@ -149,7 +200,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     secondaryButtonText: {
-        color: "green",
+        color: "#2E7D32",
     },
 });
 
