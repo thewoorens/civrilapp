@@ -5,6 +5,10 @@
     "email": "erenergut2@gmail.com",
     "url": "https://github.com/thewoorens"
   },
+  "repository": {
+    "url": "github.com/thewoorens/civrilapp"
+  },
+  "description": "This project development by Kernel Software",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -14,12 +18,14 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/metro-runtime": "~4.0.0",
     "@react-native-async-storage/async-storage": "^2.1.0",
     "@react-native-firebase/messaging": "^21.6.2",
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/native": "^7.0.14",
     "@react-navigation/native-stack": "^7.2.0",
     "@react-navigation/stack": "^7.1.1",
+    "axios": "^1.7.9",
     "expo": "~52.0.23",
     "expo-localization": "^16.0.0",
     "expo-status-bar": "~2.0.0",
@@ -28,6 +34,7 @@
     "i18next-browser-languagedetector": "^8.0.2",
     "i18next-http-backend": "^3.0.1",
     "react": "18.3.1",
+    "react-dom": "18.3.1",
     "react-i18next": "^15.4.0",
     "react-native": "0.76.5",
     "react-native-fast-image": "^8.6.3",
@@ -38,6 +45,7 @@
     "react-native-screens": "~4.4.0",
     "react-native-swiper": "^1.6.0",
     "react-native-vector-icons": "^10.2.0",
+    "react-native-web": "~0.19.13",
     "react-navigation": "^5.0.0"
   },
   "devDependencies": {
