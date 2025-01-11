@@ -23,12 +23,7 @@ function TopBar() {
     const {t} = useTranslation(); // Translation function
     const [modalVisible, setModalVisible] = useState(false);
     const notifications = [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        "Herhangi bir bildirim bulunamadı"
     ];
     const times = new Date().toLocaleTimeString();
     return (
@@ -36,7 +31,7 @@ function TopBar() {
             <StatusBar barStyle="light-content"/>
             <Text style={styles.welcomeText}><Text style={{
                 fontWeight: 'bold',
-            }}>{t('welcome')}</Text>, Semih Dere</Text>
+            }}>{t('welcome')}</Text></Text>
             <TouchableOpacity onPress={() => setModalVisible(true)}>
                 <Ionicons name="notifications" size={24} style={styles.settingsIcon}/>
             </TouchableOpacity>
@@ -105,9 +100,6 @@ const styles = StyleSheet.create({
     topBar: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: 10,
-        height: "auto",
         backgroundColor: '#32CD32',
     },
     welcomeText: {
@@ -131,7 +123,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
     },
     container: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     }

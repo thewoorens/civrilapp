@@ -41,7 +41,7 @@ export default function NewsDetailScreen() {
     };
 
     if (!news) {
-        return <Loading />  // Loading state if news data is not available yet
+        return <Loading message={"Haber Yükleniyor..."}/>  // Loading state if news data is not available yet
     }
 
 

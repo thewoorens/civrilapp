@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-const NewsDetailScreen = ({ news }) => {
+const Loading = ({ news, message }) => {
     const [rotation, setRotation] = useState(new Animated.Value(0));
 
     useEffect(() => {
         const rotateAnimation = Animated.loop(
             Animated.timing(rotation, {
-                toValue: 1,
-                duration: 1000,
+                toValue: 200,
+                duration: 100000,
                 useNativeDriver: true,
             })
         );
@@ -29,7 +29,7 @@ const NewsDetailScreen = ({ news }) => {
                 <Animated.View style={[styles.loadingIcon, { transform: [{ rotate: rotateInterpolate }] }]}>
                     <Ionicons name="reload-circle-outline" size={56} color="gray" />
                 </Animated.View>
-                <Text style={styles.loadingText}>Yükleniyor...</Text>
+                <Text style={styles.loadingText}>{message}</Text>
             </View>
         );
     }
@@ -47,9 +47,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    loadingIcon: {
-        marginBottom: 20,
-    },
     loadingText: {
         fontSize: 16,
         color: 'gray',
@@ -60,4 +57,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default NewsDetailScreen;
+export default Loading;

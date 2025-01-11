@@ -1,59 +1,44 @@
 import axios from 'axios';
 
-const getWeather = (cityName) => {
-    console.log(cityName, " için api tetiklendi")
-    axios({
-        method: 'GET',
-        url: 'https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=Istanbul,tr&appid=a2f612909bd0c67f76a223644afa61ac',
-        headers: {'X-Custom-Header': 'name'},
-    }).then(function (response) {
-        console.log('veriler çekildi şimdi geri döndürülüyor')
+const getWeather = async (cityName) => {
+    console.log(`${cityName} için API tetiklendi`);
 
-        const cityName = response.data.name;
-        const weatherDescription = response.data.weather[0].description;
-        const weatherIcon = response.data.weather[0].icon;
-        const tempKelvin = response.data.main.temp;
-        const tempCelsius = Math.floor(tempKelvin - 273.15);
-        let weatherDescriptionTr;
-        switch (weatherDescription) {
-            case 'clear sky':
-                weatherDescriptionTr = 'Açık gökyüzü';
-                break;
-            case 'few clouds':
-                weatherDescriptionTr = 'Az bulutlu';
-                break;
-            case 'scattered clouds':
-                weatherDescriptionTr = 'Parçalı bulutlu';
-                break;
-            case 'broken clouds':
-                weatherDescriptionTr = 'Çok bulutlu';
-                break;
-            case 'shower rain':
-                weatherDescriptionTr = 'Sağanak yağmurlu';
-                break;
-            case 'rain':
-                weatherDescriptionTr = 'Yağmurlu';
-                break;
-            case 'thunderstorm':
-                weatherDescriptionTr = 'Fırtınalı';
-                break;
-            case 'snow':
-                weatherDescriptionTr = 'Karlı';
-                break;
-            case 'mist':
-                weatherDescriptionTr = 'Sisli';
-                break;
-            default:
-                weatherDescriptionTr = weatherDescription;
+    try {
+        const geoResponse = await axios({
+            method: 'GET',
+            url: `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=a2f612909bd0c67f76a223644afa61ac`,
+        });
+
+        if (geoResponse.data.length === 0) {
+            throw new Error('Şehir bulunamadı');
         }
 
-        const weather = {city: cityName, weather: weatherDescriptionTr, icon: weatherIcon, celsius: tempCelsius};
-        console.log("SUCCESS API LOG: " + JSON.stringify(weather));
-        return weather.celsius;
-    }).catch(function (error) {
-        console.error("ERROR API LOG: " + error);
-    });
+        const { lat, lon, name } = geoResponse.data[0];
+
+        const weatherResponse = await axios({
+            method: 'GET',
+            url: `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=a2f612909bd0c67f76a223644afa61ac&lang=tr`,
+        });
+
+        const { weather, main } = weatherResponse.data;
+        const weatherDescription = weather[0].description;
+        const weatherIcon = weather[0].icon;
+        const tempKelvin = main.temp;
+        const tempCelsius = Math.floor(tempKelvin - 273.15);
+
+        const result = {
+            city: name,
+            weather: weatherDescription,
+            icon: weatherIcon,
+            celsius: tempCelsius,
+        };
+
+        console.log("SUCCESS API LOG: " + JSON.stringify(result));
+        return result;
+    } catch (error) {
+        console.error("ERROR API LOG: " + error.message);
+        throw error; // Hata oluşursa, yukarıya iletilir
+    }
 };
 
-
-export {getWeather}
+export { getWeather };

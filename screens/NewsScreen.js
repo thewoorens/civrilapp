@@ -31,7 +31,7 @@ export default function NewsScreen({navigation}) {
     };
 
     if (loading) {
-        return <Loading/>;
+        return <Loading message={"Haberler Yükleniyor..."}/>;
     }
 
     return (

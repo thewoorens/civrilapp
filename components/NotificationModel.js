@@ -29,12 +29,7 @@ const NotificationModel = ({visible, onClose, notifications, times}) => {
                             </View>
                         ))}
                     </ScrollView>
-                    <TouchableOpacity
-                        style={styles.closeButton}
-                        onPress={() => alert('Temzileme İşlemi Aktif Değil')}
-                    >
-                        <Text style={styles.closeButtonText}>Temizle</Text>
-                    </TouchableOpacity>
+
                 </View>
             </View>
         </Modal>
