@@ -8,9 +8,6 @@
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "sdkVersion": "52.0.0",
-    "plugins": [
-      "expo-dev-client"
-    ],
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",

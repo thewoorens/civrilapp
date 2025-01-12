@@ -5,6 +5,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import {useRoute} from "@react-navigation/native";
 import {fetchNews} from "../backend/backend";
 import Loading from "../components/Loading";
+import PharmacyOnCallScreen from "../screens/PharmacyOnCallScreen"
 
 export default function NewsDetailScreen() {
     const route = useRoute();  // Get the route parameter
