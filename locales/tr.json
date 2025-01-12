@@ -1,4 +1,4 @@
-{ 
+{
   "SendFeedback": "Geri Bildirim Gönder",
   "Feedback": "Geri Bildirim",
   "ServiceStatus": "Hizmet Durumu",
@@ -6,7 +6,8 @@
   "QuickFaultNotification": "Hızlı Arıza Bildirimi",
   "MunicipalServices": "Belediye Hizmetleri",
   "LanguageSettings": "Dil Ayarları",
-"Language": "Dil",
+
+  "Language": "Dil",
   "NewsandAnnouncements": "Haberler ve Duyurular",
   "NotificationSettings": "Bildirim Ayarları",
   "AddressInformation": "Adres Bilgileri",
@@ -22,5 +23,5 @@
   "jobs": "İş İlanları",
   "contact": "İletişim",
   "languageSelection": "Lütfen Dil Seçin",
-  "newsDetail":"Haber Detayları"
+  "newsDetail": "Haber Detayları"
 }

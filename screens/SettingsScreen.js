@@ -46,7 +46,7 @@ const SettingsScreen = ({navigation}) => {
                     style={styles.option}
                     onPress={() => navigation.navigate('AddressEdit')}>
                     <Ionicons name="location-outline" size={28} color="#4c9f70"/>
- 
+
                     <Text style={styles.optionText}>{t("AddressInformation")}</Text>
                 </TouchableOpacity>
             </View>
@@ -59,7 +59,7 @@ const SettingsScreen = ({navigation}) => {
                     style={styles.option}
                     onPress={() => navigation.navigate('NewsNotifications')}>
                     <Ionicons name="notifications-outline" size={28} color="#4c9f70"/>
-                    <Text style={styles.optionText}>{t("NewandAnnouncements")}</Text>
+                    <Text style={styles.optionText}>{t("NewsandAnnouncements")}</Text>
                 </TouchableOpacity>
             </View>
 
@@ -74,34 +74,26 @@ const SettingsScreen = ({navigation}) => {
             </View>
 
             <View style={styles.section}>
-                <Text style={styles.sectionTitle}>{t("  MunicipalServices")}</Text>
+                <Text style={styles.sectionTitle}>{t("MunicipalServices")}</Text>
 
                 <TouchableOpacity
                     activeOpacity={.6}
                     style={styles.option}
                     onPress={() => navigation.navigate('ReportFault')}>
                     <Ionicons name="alert-circle-outline" size={28} color="#e63946"/>
-                    <Text style={styles.optionText}>{t("  Quick Fault Notification")}</Text>
+                    <Text style={styles.optionText}>{t("QuickFaultNotification")}</Text>
                 </TouchableOpacity>
             </View>
 
             <View style={styles.section}>
-                <Text style={styles.sectionTitle}>{t("  Technical Settings")}</Text>
-                <TouchableOpacity
-                    activeOpacity={.6}
-
-                    style={styles.option}
-                    onPress={() => navigation.navigate('AppUpdates')}>
-                    <Ionicons name="cloud-download-outline" size={28} color="#4c9f70"/>
-                    <Text style={styles.optionText}>Uygulama Güncellemeleri</Text>
-                </TouchableOpacity>
+                <Text style={styles.sectionTitle}>{t("TechnicalSettings")}</Text>
                 <TouchableOpacity
                     activeOpacity={.6}
 
                     style={styles.option}
                     onPress={() => navigation.navigate('ServiceStatus')}>
                     <Ionicons name="bulb-outline" size={28} color="#4c9f70"/>
-                    <Text style={styles.optionText}>{t("  Service Status")}</Text>
+                    <Text style={styles.optionText}>{t("ServiceStatus")}</Text>
                 </TouchableOpacity>
             </View>
 
@@ -112,7 +104,7 @@ const SettingsScreen = ({navigation}) => {
                     style={styles.option}
                     onPress={() => navigation.navigate('Feedback')}>
                     <Ionicons name="chatbubble-ellipses-outline" size={28} color="#4c9f70"/>
-                    <Text style={styles.optionText}>{t("Send Feedback")}</Text>
+                    <Text style={styles.optionText}>{t("SendFeedback")}</Text>
                 </TouchableOpacity>
             </View>
 
