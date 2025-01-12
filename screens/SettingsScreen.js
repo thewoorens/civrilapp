@@ -32,13 +32,13 @@ const SettingsScreen = ({navigation}) => {
     return (
         <ScrollView style={styles.container}>
             <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Kullanıcı Profili</Text>
+                <Text style={styles.sectionTitle}>{t("userProfile")}</Text>
                 <TouchableOpacity
                     activeOpacity={.6}
                     style={styles.option}
                     onPress={() => navigation.navigate('ProfileEdit')}>
                     <Ionicons name="person-outline" size={28} color="#4c9f70"/>
-                    <Text style={styles.optionText}>Profili Düzenle</Text>
+                    <Text style={styles.optionText}>{t("editProfile")}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     activeOpacity={.6}
@@ -46,24 +46,25 @@ const SettingsScreen = ({navigation}) => {
                     style={styles.option}
                     onPress={() => navigation.navigate('AddressEdit')}>
                     <Ionicons name="location-outline" size={28} color="#4c9f70"/>
-                    <Text style={styles.optionText}>Adres Bilgileri</Text>
+ 
+                    <Text style={styles.optionText}>{t("AddressInformation")}</Text>
                 </TouchableOpacity>
             </View>
 
             <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Bildirim Ayarları</Text>
+                <Text style={styles.sectionTitle}>{t("NotificationSettings")}</Text>
                 <TouchableOpacity
                     activeOpacity={.6}
 
                     style={styles.option}
                     onPress={() => navigation.navigate('NewsNotifications')}>
                     <Ionicons name="notifications-outline" size={28} color="#4c9f70"/>
-                    <Text style={styles.optionText}>Haberler ve Duyurular</Text>
+                    <Text style={styles.optionText}>{t("NewandAnnouncements")}</Text>
                 </TouchableOpacity>
             </View>
 
             <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Dil ve Bildirimler</Text>
+                <Text style={styles.sectionTitle}>{t("Language")}</Text>
                 <CivrilSelect
                     options={['Türkçe', 'İngilizce', 'Almanca']}
                     onSelect={handleLanguageChange}
@@ -73,19 +74,19 @@ const SettingsScreen = ({navigation}) => {
             </View>
 
             <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Belediye Hizmetleri</Text>
+                <Text style={styles.sectionTitle}>{t("  MunicipalServices")}</Text>
 
                 <TouchableOpacity
                     activeOpacity={.6}
                     style={styles.option}
                     onPress={() => navigation.navigate('ReportFault')}>
                     <Ionicons name="alert-circle-outline" size={28} color="#e63946"/>
-                    <Text style={styles.optionText}>Hızlı Arıza Bildirimi</Text>
+                    <Text style={styles.optionText}>{t("  Quick Fault Notification")}</Text>
                 </TouchableOpacity>
             </View>
 
             <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Teknik Ayarlar</Text>
+                <Text style={styles.sectionTitle}>{t("  Technical Settings")}</Text>
                 <TouchableOpacity
                     activeOpacity={.6}
 
@@ -100,18 +101,18 @@ const SettingsScreen = ({navigation}) => {
                     style={styles.option}
                     onPress={() => navigation.navigate('ServiceStatus')}>
                     <Ionicons name="bulb-outline" size={28} color="#4c9f70"/>
-                    <Text style={styles.optionText}>Hizmet Durumu</Text>
+                    <Text style={styles.optionText}>{t("  Service Status")}</Text>
                 </TouchableOpacity>
             </View>
 
             <View style={styles.section}>
-                <Text style={styles.sectionTitle}>Geri Bildirim</Text>
+                <Text style={styles.sectionTitle}>{t("Feedback")}</Text>
                 <TouchableOpacity
                     activeOpacity={.6}
                     style={styles.option}
                     onPress={() => navigation.navigate('Feedback')}>
                     <Ionicons name="chatbubble-ellipses-outline" size={28} color="#4c9f70"/>
-                    <Text style={styles.optionText}>Geri Bildirim Gönder</Text>
+                    <Text style={styles.optionText}>{t("Send Feedback")}</Text>
                 </TouchableOpacity>
             </View>
 

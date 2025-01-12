@@ -1,4 +1,17 @@
-{
+{ 
+  "SendFeedback": "Geri Bildirim Gönder",
+  "Feedback": "Geri Bildirim",
+  "ServiceStatus": "Hizmet Durumu",
+  "TechnicalSettings": "Teknik Ayarlar",
+  "QuickFaultNotification": "Hızlı Arıza Bildirimi",
+  "MunicipalServices": "Belediye Hizmetleri",
+  "LanguageSettings": "Dil Ayarları",
+"Language": "Dil",
+  "NewsandAnnouncements": "Haberler ve Duyurular",
+  "NotificationSettings": "Bildirim Ayarları",
+  "AddressInformation": "Adres Bilgileri",
+  "editProfile": "Profili Düzenle",
+  "userProfile": "Kullanıcı Profili",
   "welcome": "Hoşgeldiniz",
   "hello": "Merhaba, nasılsınız?",
   "changeLanguage": "Dil Değiştir",

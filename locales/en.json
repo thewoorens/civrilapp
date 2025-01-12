@@ -1,4 +1,17 @@
 {
+  "SendFeedback": "Send Feedback",
+  "Feedback": "Feedback",
+  "ServiceStatus": "Service Status",
+  "QuickFaultNotification": "Quick Fault Notification",
+  "MunicipalServices": "Municipal Services",
+  "LanguageSettings  ": "Language Settings",
+"Language": "Language",
+  "NewsandAnnouncements": "News and Announcements",
+  "Notification Settings": "Notification Settings",
+  "AddressInformation": "Address Information",
+  "editProfile": "Edit Profile",
+
+  "userProfile": "User Profile",
   "welcome": "Welcome",
   "hello": "Hello, how are you?",
   "changeLanguage": "Change Language",
