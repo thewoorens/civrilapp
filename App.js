@@ -16,6 +16,9 @@ import 'react-native-gesture-handler';
 import NotificationModel from "./components/NotificationModel";
 import Tabs from "./tabs";
 import NewsDetailScreen from "./screens/NewsDetailScreen";
+import PharmacyOnCallScreen from "./screens/PharmacyOnCallScreen";
+import WaterOutageScreen from "./screens/WaterOutageScreen";
+import SurveysScreen from "./screens/SurveysScreen";
 
 const Stack = createStackNavigator();
 
@@ -45,18 +48,31 @@ function TopBar() {
     );
 }
 
-function NewsDetailTopBar({ navigation }) {
-    const { t } = useTranslation();
+function NewsDetailTopBar({navigation}) {
+    const {t} = useTranslation();
     return (
         <SafeAreaView style={styles.topBar}>
-            <StatusBar barStyle="light-content" />
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Ionicons name="arrow-back" size={34} style={styles.backIcon} />
+            <StatusBar barStyle="light-content"/>
+            <TouchableOpacity activeOpacity={1} onPress={() => navigation.goBack()}>
+                <Ionicons name="chevron-back-outline" size={34} style={styles.backIcon}/>
             </TouchableOpacity>
             <Text style={styles.newsDetailTitle}>{t('newsDetail')}</Text>
         </SafeAreaView>
     );
 }
+
+function DetailTopBar({navigation, title}) {
+    return (
+        <SafeAreaView style={styles.topBar}>
+            <StatusBar barStyle="light-content"/>
+            <TouchableOpacity activeOpacity={1} style={{marginBottom: 10}} onPress={() => navigation.goBack()}>
+                <Ionicons name="chevron-back-outline" size={34} style={styles.backIcon}/>
+            </TouchableOpacity>
+            <Text style={styles.newsDetailTitle}>{title}</Text>
+        </SafeAreaView>
+    );
+}
+
 
 function DetailsScreen() {
     return (
@@ -75,14 +91,23 @@ export default function App() {
         <NavigationContainer>
             <Stack.Navigator
                 screenOptions={{
-                    header: () => <TopBar />, // Use TopBar as the header
+                    header: () => <TopBar/>, // Use TopBar as the header
                 }}
             >
-                <Stack.Screen name="Tabs" component={Tabs} />
-                <Stack.Screen name="Details" component={DetailsScreen} />
+                <Stack.Screen name="Tabs" component={Tabs}/>
+                <Stack.Screen name="Details" component={DetailsScreen}/>
+                <Stack.Screen name="PharmacyOnCallScreen" options={{
+                    header: (props) => <DetailTopBar {...props} title={"Pharmacy On Call"}/>
+                }} component={PharmacyOnCallScreen}/>
+                <Stack.Screen name="WaterOutageScreen" options={{
+                    header: (props) => <DetailTopBar {...props} title={"Water Outage List"}/>
+                }} component={WaterOutageScreen}/>
+                <Stack.Screen name="SurveysScreen" options={{
+                    header: (props) => <DetailTopBar {...props} title={"Surveys List"}/>
+                }} component={SurveysScreen}/>
                 <Stack.Screen name="NewsDetail" options={{
                     header: (props) => <NewsDetailTopBar {...props} />
-                }} component={NewsDetailScreen} />
+                }} component={NewsDetailScreen}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
@@ -102,6 +127,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         backgroundColor: '#32CD32',
     },
+    detailTopBar: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: '#32CD32',
+    },
     welcomeText: {
         fontSize: 18,
         color: 'black',
@@ -113,12 +143,14 @@ const styles = StyleSheet.create({
         color: 'black',
     },
     backIcon: {
+        marginTop: 5,
         marginLeft: 15,
         color: 'black',
     },
     newsDetailTitle: {
         fontSize: 18,
         color: 'black',
+        fontWeight: '600',
         paddingVertical: 15,
         paddingHorizontal: 15,
     },

@@ -4,12 +4,11 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import CivrilSlider from '../components/Slider/CivrilSlider';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-
 const {width} = Dimensions.get('window');
 const cardSize = (width - 40) / 3;
 import {getWeather} from "../backend/api";
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
 
         const [weather, setWeather] = useState(null);
         const [loading, setLoading] = useState(true);
@@ -134,15 +133,15 @@ const HomeScreen = () => {
                     )}
                     <CivrilSlider/>
                     <View style={styles.cardsContainer}>
-                        <TouchableOpacity activeOpacity={5} style={styles.card}>
+                        <TouchableOpacity activeOpacity={5} style={styles.card}  onPress={() => navigation.navigate('PharmacyOnCallScreen')}>
                             <Text style={styles.cardIcon}><MaterialCommunityIcons name={"pill"} size={34}/></Text>
                             <Text style={styles.cardTitle}>Nöbetçi Eczaneler</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={5} style={styles.card}>
+                        <TouchableOpacity activeOpacity={5} style={styles.card}  onPress={() => navigation.navigate('WaterOutageScreen')}>
                             <Text style={styles.cardIcon}><Ionicons name={"water-outline"} size={34}/></Text>
                             <Text style={styles.cardTitle}>Su Kesinti Listesi</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={5} style={styles.card}>
+                        <TouchableOpacity activeOpacity={5} style={styles.card}  onPress={() => navigation.navigate('SurveysScreen')}>
                             <Text style={styles.cardIcon}><Ionicons name={"reader-outline"} size={34}/></Text>
                             <Text style={styles.cardTitle}>Anketler</Text>
                         </TouchableOpacity>
