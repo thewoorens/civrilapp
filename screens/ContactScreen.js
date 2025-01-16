@@ -18,11 +18,22 @@ import {newContactMessage} from "../backend/backend";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {Dropdown} from 'react-native-element-dropdown';
-import Loading from "../components/Loading"; // Dropdown menü
+import Loading from "../components/Loading";
+import {getData} from "../backend/storage";
 
 export default function ContactScreen() {
+    const fetchUserData = async () => {
+        const userData = await getData('user');
+        if (userData) {
+            setEmail(userData.email);
+            console.log('Kullanıcı verileri:', userData);
+        } else {
+            console.log('Kullanıcı verisi bulunamadı.');
+        }
+    };
+    fetchUserData();
     const [name, setName] = useState('');
-    const [email, setEmail] = useState('test@kernelsoftware.com.tr');
+    const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [selectedNeighborhood, setSelectedNeighborhood] = useState('');
     const [image, setImage] = useState(null);
@@ -66,7 +77,6 @@ export default function ContactScreen() {
                 Alert.alert('Başarılı', 'Mesajınız başarıyla gönderildi!');
             }
 
-            // Form temizleme
             setName('');
             setEmail('');
             setMessage('');
@@ -108,7 +118,7 @@ export default function ContactScreen() {
                             />
 
                             <TextInput
-                                style={styles.input}
+                                style={{display: 'none'}}
                                 placeholder="E-posta Adresinizi Giriniz"
                                 keyboardType="email-address"
                                 value={email}

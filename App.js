@@ -19,6 +19,8 @@ import NewsDetailScreen from "./screens/NewsDetailScreen";
 import PharmacyOnCallScreen from "./screens/PharmacyOnCallScreen";
 import WaterOutageScreen from "./screens/WaterOutageScreen";
 import SurveysScreen from "./screens/SurveysScreen";
+import LoginScreen from "./login/LoginScreen";
+import RegisterScreen from "./login/RegisterScreen";
 
 const Stack = createStackNavigator();
 
@@ -82,35 +84,50 @@ function DetailsScreen() {
     );
 }
 
-export default function App() {
-
-    console.log("KERNEL-LOG => APP START SUCCESSFUL powered by kernelsoftware"); // Log application render
+function MainMenu() {
     const {t} = useTranslation();
 
     return (
+        <Stack.Navigator
+            screenOptions={{
+                header: () => <><TopBar/></>, // Use TopBar as the header
+            }}
+        >
+            <Stack.Screen name="Tabs" component={Tabs}/>
+            <Stack.Screen name="Details" component={DetailsScreen}/>
+            <Stack.Screen name="PharmacyOnCallScreen" options={{
+                header: (props) => <DetailTopBar {...props} title={"Pharmacy On Call"}/>
+            }} component={PharmacyOnCallScreen}/>
+            <Stack.Screen name="WaterOutageScreen" options={{
+                header: (props) => <DetailTopBar {...props} title={"Water Outage List"}/>
+            }} component={WaterOutageScreen}/>
+            <Stack.Screen name="SurveysScreen" options={{
+                header: (props) => <DetailTopBar {...props} title={"Surveys List"}/>
+            }} component={SurveysScreen}/>
+            <Stack.Screen name="NewsDetail" options={{
+                header: (props) => <NewsDetailTopBar {...props} />
+            }} component={NewsDetailScreen}/>
+        </Stack.Navigator>
+    );
+}
+
+export default function App() {
+
+    console.log("KERNEL-LOG => APP START SUCCESSFUL powered by kernelsoftware"); // Log application render
+
+    return (
         <NavigationContainer>
-            <Stack.Navigator
-                screenOptions={{
-                    header: () => <TopBar/>, // Use TopBar as the header
-                }}
-            >
-                <Stack.Screen name="Tabs" component={Tabs}/>
-                <Stack.Screen name="Details" component={DetailsScreen}/>
-                <Stack.Screen name="PharmacyOnCallScreen" options={{
-                    header: (props) => <DetailTopBar {...props} title={"Pharmacy On Call"}/>
-                }} component={PharmacyOnCallScreen}/>
-                <Stack.Screen name="WaterOutageScreen" options={{
-                    header: (props) => <DetailTopBar {...props} title={"Water Outage List"}/>
-                }} component={WaterOutageScreen}/>
-                <Stack.Screen name="SurveysScreen" options={{
-                    header: (props) => <DetailTopBar {...props} title={"Surveys List"}/>
-                }} component={SurveysScreen}/>
-                <Stack.Screen name="NewsDetail" options={{
-                    header: (props) => <NewsDetailTopBar {...props} />
-                }} component={NewsDetailScreen}/>
+            <Stack.Navigator screenOptions={{headerShown: false}}>
+                <Stack.Screen name="Login" component={LoginScreen}
+                              options={{gestureEnabled: false, animation: 'fade_from_bottom'}}/>
+                <Stack.Screen name="Register" component={RegisterScreen}
+                              options={{gestureEnabled: false, animation: 'fade_from_bottom'}}/>
+                <Stack.Screen name="MainMenu" component={MainMenu}
+                              options={{gestureEnabled: false, animation: 'fade_from_bottom'}}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
+
 }
 
 const styles = StyleSheet.create({

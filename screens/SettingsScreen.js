@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, ScrollView, TextInput, Linking} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, ScrollView, TextInput, Linking, Alert} from 'react-native';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {useTranslation} from "react-i18next";
 import CivrilSelect from "../components/Select/CivrilSelect";
+import {logoutUser} from "../backend/auth";
 
 const SettingsScreen = ({navigation}) => {
     const {t} = useTranslation();
@@ -24,6 +25,29 @@ const SettingsScreen = ({navigation}) => {
         return languageMap[value] || "en";
 
     };
+
+    const handleLogoutButton = () => {
+        Alert.alert(
+            "Dikkat", // Başlık
+            "Çıkış yapmak istediğinize emin misiniz?", // Mesaj
+            [
+                {
+                    text: "Hayır",
+                    style: "cancel"
+                },
+                {
+                    text: "Evet",
+                    style: 'default',
+                    onPress: () => {
+                        logoutUser(); // Oturumu kapatma fonksiyonunu çağır
+                        navigation.navigate('Login'); // Login ekranına yönlendir
+                    }
+                }
+            ],
+            {cancelable: true} // Alert penceresinin dışına tıklanarak kapanamaması
+        );
+    };
+
 
     const loadInBrowser = () => {
         Linking.openURL("https://kernelsoftware.com.tr").catch(err => console.error("Couldn't load page", err));
@@ -49,6 +73,7 @@ const SettingsScreen = ({navigation}) => {
 
                     <Text style={styles.optionText}>{t("AddressInformation")}</Text>
                 </TouchableOpacity>
+
             </View>
 
             <View style={styles.section}>
@@ -105,6 +130,16 @@ const SettingsScreen = ({navigation}) => {
                     onPress={() => navigation.navigate('Feedback')}>
                     <Ionicons name="chatbubble-ellipses-outline" size={28} color="#4c9f70"/>
                     <Text style={styles.optionText}>{t("SendFeedback")}</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    activeOpacity={.6}
+
+                    style={styles.optionExit}
+                    onPress={() => handleLogoutButton()}>
+                    <Ionicons name="exit-outline" size={28} color="white"/>
+
+                    <Text style={styles.optionExitText}>Oturumu Kapat</Text>
                 </TouchableOpacity>
             </View>
 
@@ -165,6 +200,29 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 10,
         elevation: 5,
+    },
+    optionExit: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: 18,
+        paddingHorizontal: 20,
+        borderRadius: 12,
+        marginBottom: 15,
+        backgroundColor: "red",
+        shadowColor: '#ccc',
+        shadowOffset: {width: 0, height: 3},
+        shadowOpacity: 0.2,
+        shadowRadius: 10,
+        elevation: 5,
+        marginTop: 50,
+    },
+    optionExitText: {
+        fontSize: 18,
+        color: 'white',
+        flex: 1,
+        paddingLeft: 15,
+        fontWeight: '600',
     },
     optionText: {
         fontSize: 18,

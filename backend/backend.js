@@ -1,11 +1,11 @@
 import {initializeApp} from "firebase/app";
-import {addDoc, collection, getDocs, getFirestore, where} from "firebase/firestore";
+import {addDoc, collection, getDocs, getFirestore, where, query} from "firebase/firestore";
 import * as FileSystem from 'expo-file-system';
 import * as ImageManipulator from 'expo-image-manipulator';
 import axios from "axios";
 import * as Location from 'expo-location';
 import * as Device from 'expo-device';
-import { Alert } from 'react-native'; // Alert bileşenini ekliyoruz
+import {Alert} from 'react-native'; // Alert bileşenini ekliyoruz
 
 // Firebase config
 const firebaseConfig = {
@@ -76,11 +76,27 @@ const getLocation = async () => {
     }
 };
 
-// Rate Limiting Kontrolü
 const checkRateLimit = async (email) => {
-    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
-    const querySnapshot = await getDocs(collection(db, "contact"), where("email", "==", email), where("timestamp", ">", oneHourAgo));
-    return querySnapshot.size < 3; // Eğer kullanıcı son bir saat içinde 1 formdan fazla göndermediyse true döner
+    try {
+        const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+
+        // Firestore sorgusu
+        const contactQuery = query(
+            collection(db, "contact"),
+            where("email", "==", email),
+            where("timestamp", ">", oneHourAgo.toISOString())
+        );
+
+        // Sorguyu çalıştır ve sonuçları kontrol et
+        const querySnapshot = await getDocs(contactQuery);
+
+        console.log(`Son 1 saat içinde bulunan giriş sayısı: ${querySnapshot.size}`);
+
+        return querySnapshot.size < 3; // Eğer giriş sayısı 3'ten azsa true döner
+    } catch (error) {
+        console.error("Rate limit kontrol hatası:", error);
+        return false; // Hata durumunda güvenlik açısından limit dolmuş gibi davran
+    }
 };
 
 // Engellenen IP adresleri
@@ -93,8 +109,8 @@ const newContactMessage = async (name, email, message, neighborhood, imageUri) =
         if (!isAllowed) {
             Alert.alert(
                 "Gönderim Limiti Aşıldı",
-                "Günlük form gönderim limitinizi doldurdunuz. 1 günde aynı hesap üzerinden sadece 3 defa iletişim formu gönderebilirsiniz, lütfen daha sonra tekrar deneyiniz",
-                [{ text: "Tamam" }]
+                "Günlük form gönderim limitinizi doldurdunuz. 1 saat içinde yalnızca 3 iletişim formu gönderebilirsiniz.",
+                [{text: "Tamam"}]
             );
             return;
         }
@@ -107,7 +123,7 @@ const newContactMessage = async (name, email, message, neighborhood, imageUri) =
             Alert.alert(
                 "IP Adresi Engellendi",
                 "IP adresiniz engellendi. Lütfen daha sonra tekrar deneyin.",
-                [{ text: "Tamam" }]
+                [{text: "Tamam"}]
             );
             return;
         }
@@ -146,14 +162,14 @@ const newContactMessage = async (name, email, message, neighborhood, imageUri) =
         Alert.alert(
             "Başarılı",
             "Mesaj ve veriler başarıyla gönderildi.",
-            [{ text: "Tamam" }]
+            [{text: "Tamam"}]
         );
     } catch (error) {
         console.error("Mesaj gönderme hatası:", error);
         Alert.alert(
             "Gönderim Hatası",
             "Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.",
-            [{ text: "Tamam" }]
+            [{text: "Tamam"}]
         );
     }
 };
