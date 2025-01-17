@@ -79,7 +79,6 @@ const WaterOutageScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5F5F5",
     padding: 10,
   },
   header: {
@@ -96,8 +95,6 @@ const styles = StyleSheet.create({
     padding: 15,
     marginVertical: 5,
     borderRadius: 8,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
     shadowRadius: 5,
     elevation: 2,
   },

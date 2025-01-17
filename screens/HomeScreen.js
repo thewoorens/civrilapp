@@ -146,10 +146,11 @@ const HomeScreen = ({navigation}) => {
                             <Text style={styles.cardTitle}>Anketler</Text>
                         </TouchableOpacity>
                     </View>
+                        <Text>{"\n"}</Text>
                     <View style={styles.cardsContainer}>
-                        <TouchableOpacity activeOpacity={0.5} style={styles.disablecard}>
-                            <Text style={styles.cardIcon}><Ionicons name={"code-slash-outline"} size={34}/></Text>
-                            <Text style={styles.cardTitle}>Geliştiriliyor..</Text>
+                        <TouchableOpacity activeOpacity={5} style={styles.card} onPress={() => navigation.navigate('JobsScreen')}>
+                            <Text style={styles.cardIcon}><Ionicons name={"briefcase-outline"} size={34}/></Text>
+                            <Text style={styles.cardTitle}>İş İlanları</Text>
                         </TouchableOpacity>
                         <TouchableOpacity activeOpacity={0.5} style={styles.disablecard}>
                             <Text style={styles.cardIcon}><Ionicons name={"code-slash-outline"} size={34}/></Text>

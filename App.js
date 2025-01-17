@@ -19,6 +19,7 @@ import NewsDetailScreen from "./screens/NewsDetailScreen";
 import PharmacyOnCallScreen from "./screens/PharmacyOnCallScreen";
 import WaterOutageScreen from "./screens/WaterOutageScreen";
 import SurveysScreen from "./screens/SurveysScreen";
+import JobsScreen from "./screens/JobsScreen";
 import LoginScreen from "./login/LoginScreen";
 import RegisterScreen from "./login/RegisterScreen";
 
@@ -90,7 +91,7 @@ function MainMenu() {
     return (
         <Stack.Navigator
             screenOptions={{
-                header: () => <><TopBar/></>, // Use TopBar as the header
+                header: () => <TopBar/>, // Use TopBar as the header
             }}
         >
             <Stack.Screen name="Tabs" component={Tabs}/>
@@ -104,6 +105,9 @@ function MainMenu() {
             <Stack.Screen name="SurveysScreen" options={{
                 header: (props) => <DetailTopBar {...props} title={"Surveys List"}/>
             }} component={SurveysScreen}/>
+            <Stack.Screen name="JobsScreen" options={{
+                header: (props) => <DetailTopBar {...props} title={"Jobs"}/>
+            }} component={JobsScreen}/>
             <Stack.Screen name="NewsDetail" options={{
                 header: (props) => <NewsDetailTopBar {...props} />
             }} component={NewsDetailScreen}/>
