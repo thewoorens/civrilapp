@@ -1,10 +1,27 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import {StyleSheet, ScrollView, Text} from 'react-native';
 
-export default function JobsScreen() {
+const JobsScreen = () => {
+
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Jobs Screen</Text>
-        </View>
+        <ScrollView style={styles.container}>
+            <Text style={styles.title}>İş İlanları</Text>
+        </ScrollView>
     );
-}
+};
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#ffffff',
+        paddingTop: 30,
+        paddingHorizontal: 20,
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: 'green'
+    },
+});
+
+export default JobsScreen;
