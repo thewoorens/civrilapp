@@ -22,6 +22,7 @@ import SurveysScreen from "./screens/SurveysScreen";
 import JobsScreen from "./screens/JobsScreen";
 import LoginScreen from "./login/LoginScreen";
 import RegisterScreen from "./login/RegisterScreen";
+import OnlineMarketScreen from "./screens/OnlineMarketScreen";
 
 const Stack = createStackNavigator();
 
@@ -108,6 +109,9 @@ function MainMenu() {
             <Stack.Screen name="JobsScreen" options={{
                 header: (props) => <DetailTopBar {...props} title={"Jobs"}/>
             }} component={JobsScreen}/>
+            <Stack.Screen name="OnlineMarket" options={{
+                header: (props) => <DetailTopBar {...props} title={"Jobs"}/>
+            }} component={OnlineMarketScreen}/>
             <Stack.Screen name="NewsDetail" options={{
                 header: (props) => <NewsDetailTopBar {...props} />
             }} component={NewsDetailScreen}/>
