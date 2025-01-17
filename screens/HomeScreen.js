@@ -1,15 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Text, Dimensions, ScrollView, TouchableOpacity, Image} from 'react-native';
+import {StyleSheet, View, Text, Dimensions, ScrollView, TouchableOpacity, Image, Linking} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import CivrilSlider from '../components/Slider/CivrilSlider';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+
 const {width} = Dimensions.get('window');
 const cardSize = (width - 40) / 3;
 import {getWeather} from "../backend/api";
 
 const HomeScreen = ({navigation}) => {
-
+        const loadInBrowser = () => {
+            Linking.openURL("https://www.civril.bel.tr/").catch(err => console.error("Couldn't load page", err));
+        };
         const [weather, setWeather] = useState(null);
         const [loading, setLoading] = useState(true);
         const [iconName, setIconName] = useState(null);
@@ -19,8 +22,6 @@ const HomeScreen = ({navigation}) => {
                     try {
                         const data = await getWeather("Civril");
                         setWeather(data);
-
-
                         if (data.icon) {
                             let icon = null;
                             switch (data.icon) {
@@ -133,33 +134,58 @@ const HomeScreen = ({navigation}) => {
                     )}
                     <CivrilSlider/>
                     <View style={styles.cardsContainer}>
-                        <TouchableOpacity activeOpacity={5} style={styles.card}  onPress={() => navigation.navigate('PharmacyOnCallScreen')}>
+                        <TouchableOpacity activeOpacity={5} style={styles.card}
+                                          onPress={() => navigation.navigate('PharmacyOnCallScreen')}>
                             <Text style={styles.cardIcon}><MaterialCommunityIcons name={"pill"} size={34}/></Text>
                             <Text style={styles.cardTitle}>Nöbetçi Eczaneler</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={5} style={styles.card}  onPress={() => navigation.navigate('WaterOutageScreen')}>
+                        <TouchableOpacity activeOpacity={5} style={styles.card}
+                                          onPress={() => navigation.navigate('WaterOutageScreen')}>
                             <Text style={styles.cardIcon}><Ionicons name={"water-outline"} size={34}/></Text>
                             <Text style={styles.cardTitle}>Su Kesinti Listesi</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={5} style={styles.card}  onPress={() => navigation.navigate('SurveysScreen')}>
+                        <TouchableOpacity activeOpacity={5} style={styles.card}
+                                          onPress={() => navigation.navigate('SurveysScreen')}>
                             <Text style={styles.cardIcon}><Ionicons name={"reader-outline"} size={34}/></Text>
                             <Text style={styles.cardTitle}>Anketler</Text>
                         </TouchableOpacity>
                     </View>
-                        <Text>{"\n"}</Text>
+                    <Text>{"\n"}</Text>
                     <View style={styles.cardsContainer}>
-                        <TouchableOpacity activeOpacity={5} style={styles.card} onPress={() => navigation.navigate('JobsScreen')}>
+                        <TouchableOpacity activeOpacity={5} style={styles.card}
+                                          onPress={() => navigation.navigate('JobsScreen')}>
                             <Text style={styles.cardIcon}><Ionicons name={"briefcase-outline"} size={34}/></Text>
                             <Text style={styles.cardTitle}>İş İlanları</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={5} style={styles.card} onPress={() => navigation.navigate('OnlineMarket')}>
-                            <Text style={styles.cardIcon}><Ionicons name={"file-tray-full-outline"} size={34}/></Text>
+                        <TouchableOpacity activeOpacity={5} style={styles.card}
+                                          onPress={() => navigation.navigate('OnlineMarket')}>
+                            <Text style={styles.cardIcon}><Ionicons name={"basket-outline"} size={34}/></Text>
                             <Text style={styles.cardTitle}>Online Pazar</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity activeOpacity={0.5} style={styles.disablecard}>
-                            <Text style={styles.cardIcon}><Ionicons name={"code-slash-outline"} size={34}/></Text>
-                            <Text style={styles.cardTitle}>Geliştiriliyor..</Text>
+                        <TouchableOpacity activeOpacity={5} style={styles.card}
+                                          onPress={() => loadInBrowser()}>
+                            <Text style={styles.cardIcon}><Ionicons name={"planet-outline"} size={34}/></Text>
+                            <Text style={styles.cardTitle}>Onilne İşlemler</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <Text>{"\n"}</Text>
+                    <View style={styles.cardsContainer}>
+                        <TouchableOpacity activeOpacity={5} style={styles.card}
+                                          onPress={() => navigation.navigate('CouncilScreen')}>
+                            <Text style={styles.cardIcon}><Ionicons name={"information-circle-outline"} size={34}/></Text>
+                            <Text style={styles.cardTitle}>Meclis Kararları</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity activeOpacity={5} style={styles.card}
+                                          onPress={() => navigation.navigate('EventScreen')}>
+                            <Text style={styles.cardIcon}><Ionicons name={"gift-outline"} size={34}/></Text>
+                            <Text style={styles.cardTitle}>Etkinlikler{"\n"}</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity activeOpacity={5} style={styles.card}
+                                          onPress={() => navigation.navigate('CivrilDergi')}>
+                            <Text style={styles.cardIcon}><Ionicons name={"book-outline"} size={34}/></Text>
+                            <Text style={styles.cardTitle}>Çivril Dergi</Text>
                         </TouchableOpacity>
                     </View>
                 </ScrollView>

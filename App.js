@@ -23,6 +23,9 @@ import JobsScreen from "./screens/JobsScreen";
 import LoginScreen from "./login/LoginScreen";
 import RegisterScreen from "./login/RegisterScreen";
 import OnlineMarketScreen from "./screens/OnlineMarketScreen";
+import CouncilScreen from "./screens/CouncilScreen";
+import EventScreen from "./screens/EventScreen";
+import CivrilDergiScreen from "./screens/CivrilDergiScreen";
 
 const Stack = createStackNavigator();
 
@@ -96,25 +99,45 @@ function MainMenu() {
             }}
         >
             <Stack.Screen name="Tabs" component={Tabs}/>
+
             <Stack.Screen name="Details" component={DetailsScreen}/>
+
             <Stack.Screen name="PharmacyOnCallScreen" options={{
                 header: (props) => <DetailTopBar {...props} title={"Pharmacy On Call"}/>
             }} component={PharmacyOnCallScreen}/>
+
             <Stack.Screen name="WaterOutageScreen" options={{
                 header: (props) => <DetailTopBar {...props} title={"Water Outage List"}/>
             }} component={WaterOutageScreen}/>
+
             <Stack.Screen name="SurveysScreen" options={{
                 header: (props) => <DetailTopBar {...props} title={"Surveys List"}/>
             }} component={SurveysScreen}/>
+
             <Stack.Screen name="JobsScreen" options={{
                 header: (props) => <DetailTopBar {...props} title={"Jobs"}/>
             }} component={JobsScreen}/>
+
             <Stack.Screen name="OnlineMarket" options={{
                 header: (props) => <DetailTopBar {...props} title={"Jobs"}/>
             }} component={OnlineMarketScreen}/>
+
             <Stack.Screen name="NewsDetail" options={{
                 header: (props) => <NewsDetailTopBar {...props} />
             }} component={NewsDetailScreen}/>
+
+            <Stack.Screen name="CouncilScreen" options={{
+                header: (props) => <DetailTopBar {...props} title={"Council Screen"}/>
+            }} component={CouncilScreen}/>
+
+            <Stack.Screen name="CivrilDergi" options={{
+                header: (props) => <DetailTopBar {...props} title={"Civril Dergi Screen"}/>
+            }} component={CivrilDergiScreen}/>
+
+            <Stack.Screen name="EventScreen" options={{
+                header: (props) => <NewsDetailTopBar {...props} />
+            }} component={EventScreen}/>
+
         </Stack.Navigator>
     );
 }

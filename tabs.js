@@ -6,7 +6,7 @@ import {Image, TouchableOpacity, View} from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ContactScreen from "./screens/ContactScreen";
 import {useTranslation} from "react-i18next";
-import FastScreen from "./screens/FastScreen";
+import CivrilWeb from "./screens/CivrilWeb";
 
 const Tab = createBottomTabNavigator();
 
@@ -73,8 +73,8 @@ const Tabs = () => {
                 }}
             />
             <Tab.Screen
-                name="Fast"
-                component={FastScreen}
+                name="CivrilWeb"
+                component={CivrilWeb}
                 options={{
                     tabBarIcon: ({focused}) => (
                         <View>
