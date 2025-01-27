@@ -9,7 +9,7 @@ import {
 const CivrilWeb = () => {
     return (
         <SafeAreaView style={styles.container}>
-            <Text>Civril Web Sitesi Buraya Gelicek hanımlar</Text>
+            <Text>Civril Web Sitesi Buraya Gelicek</Text>
         </SafeAreaView>
     );
 };
