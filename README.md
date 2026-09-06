@@ -39,9 +39,6 @@ yarn install
 yarn start
 ```
 
-## ✨ Lisans
-Bu proje, [Kernel Software](https://kernelsoftware.com.tr) tarafından lisanslanmıştır. Tüm hakları saklıdır. 2025
-
 ---
 
 Eğer herhangi bir sorunuz varsa, lütfen proje sorumlusuyla iletişime geçin veya bir [issue](https://github.com/kullaniciadi/CivrilApp/issues) oluşturun.
